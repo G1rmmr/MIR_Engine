@@ -5,7 +5,7 @@
 #include "Editor_window.h"
 #include "..\\MIREngine_sources\MIRApplication.h"
 
-Application app;
+MIR::Application g_app;
 
 #define MAX_LOADSTRING 100
 
@@ -62,6 +62,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // Instance handle
         else
         {
             // Game Logic
+            g_app.Run();
         }
     }
 
@@ -121,6 +122,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+
+   g_app.Initialize(hWnd);
 
    if (!hWnd)
    {
