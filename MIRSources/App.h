@@ -22,8 +22,13 @@ namespace MIR
 
 		void Render();
 
+		void UpdateBullet();
+
 	private:
-		std::vector<GameObject*>* m_objects;
+		//std::vector<GameObject*>* m_objects;
+
+		Rect* m_player;
+		Circle* m_bullet;
 
 		HWND m_hwnd;
 		
@@ -36,6 +41,7 @@ namespace MIR
 		UINT m_height;
 
 		float m_speed;
+		bool m_can_fire;
 	};
 }
 

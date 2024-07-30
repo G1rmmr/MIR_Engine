@@ -9,16 +9,23 @@ App::App() :
 	m_front_hdc(nullptr),
 	m_back_hdc(nullptr),
 	m_buf(nullptr),
-	m_speed(100.0f),
-	m_width(0),
-	m_height(0)
+	m_speed(500.0f),
+	m_width(0.0f),
+	m_height(0.0f),
+	m_can_fire(true)
 {
-	m_objects = new std::vector<GameObject*>;
+	// m_objects = new std::vector<GameObject*>;
+	m_player = new Rect{};
+	m_player->SetPos(500.0f, 500.0f);
+
+	m_bullet = new Circle{};
+	m_bullet->SetPos(m_player->GetX(), m_player->GetY());
 }
 
 App::~App()
 {
-	delete m_objects;
+	delete m_player;
+	delete m_bullet;
 }
 
 void App::Initialize(const HWND hwnd, UINT width, UINT height)
@@ -26,7 +33,7 @@ void App::Initialize(const HWND hwnd, UINT width, UINT height)
 	m_hwnd = hwnd;
 	m_front_hdc = GetDC(hwnd);
 
-	RECT rect = {0, 0, width, height};
+	RECT rect = { 0, 0, width, height };
 	AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
 	m_width = rect.right - rect.left;
@@ -43,8 +50,8 @@ void App::Initialize(const HWND hwnd, UINT width, UINT height)
 	HBITMAP old_bitmap = static_cast<HBITMAP>(SelectObject(m_back_hdc, m_buf));
 	DeleteObject(old_bitmap);
 
-	// m_objects->emplace_back(new Rect{});
-	m_objects->emplace_back(new Circle{});
+	//m_objects->emplace_back(new Rect{});
+	//m_objects->emplace_back(new Circle{});
 
 	Input::Init();
 	Time::Init();
@@ -57,15 +64,40 @@ void App::Run()
 	Render();
 }
 
+void App::UpdateBullet()
+{
+	float x = m_bullet->GetX();
+	float y = m_bullet->GetY();
+
+	if (m_can_fire) m_bullet->SetPos(m_player->GetX(), m_player->GetY());
+	else
+	{
+		m_bullet->SetPos(x, y - 2.0f * m_speed * Time::GetDeltaTime());
+	}
+
+	if (y < 0.0f)
+	{
+		m_can_fire = true;
+	}
+
+	if (Input::GetKey(eKeyCode::SPACE))
+	{
+		m_can_fire = false;
+	}
+}
+
 void App::Update()
 {
 	Input::Update();
 	Time::Update();
 
-	for (auto& object : *m_objects)
-	{
-		object->Update(m_speed);
-	}
+	m_player->Update(m_speed);
+	UpdateBullet();
+
+	//for (auto& object : *m_objects)
+	//{
+	//	object->Update(m_speed);
+	//}
 }
 
 void App::LateUpdate()
@@ -79,10 +111,14 @@ void App::Render()
 
 	Time::Render(m_back_hdc);
 
-	for (auto& object : *m_objects)
-	{
-		object->Render(m_back_hdc);
-	}
+	m_player->Render(m_back_hdc);
+
+	if(!m_can_fire) m_bullet->Render(m_back_hdc);
+
+	//for (auto& object : *m_objects)
+	//{
+	//	object->Render(m_back_hdc);
+	//}
 
 	// Buffering
 	BitBlt(m_front_hdc, 0, 0, m_width, m_height, m_back_hdc, 0, 0, SRCCOPY);

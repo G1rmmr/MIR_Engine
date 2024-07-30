@@ -18,10 +18,14 @@ public:
 		m_y = y;
 	}
 
+	void SetRadius(float radius) { m_radius = radius; }
+
 	float GetX() const { return m_x; }
 	float GetY() const { return m_y; }
+	float GetRadius() const { return m_radius; }
 
 private:
 	float m_x;
 	float m_y;
+	float m_radius;
 };

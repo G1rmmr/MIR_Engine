@@ -2,11 +2,9 @@
 #include "Input.h"
 #include "Time.h"
 
-#include <cstdio>
-
 using namespace MIR;
 
-Rect::Rect() : m_x(0.0f), m_y(0.0f)
+Rect::Rect() : m_x(0.0f), m_y(0.0f), m_width(100.0f), m_height(100.0f)
 {
 
 }
@@ -18,24 +16,24 @@ Rect::~Rect()
 
 void Rect::Update(float speed)
 {
-	if (Input::GetKey(eKeyCode::LEFT))
-	{
-		m_x -= speed * Time::GetDeltaTime();
-	}
-
-	if (Input::GetKey(eKeyCode::RIGHT))
-	{
-		m_x += speed * Time::GetDeltaTime();
-	}
-
-	if (Input::GetKey(eKeyCode::UP))
+	if (Input::GetKey(eKeyCode::W))
 	{
 		m_y -= speed * Time::GetDeltaTime();
 	}
 
-	if (Input::GetKey(eKeyCode::DOWN))
+	if (Input::GetKey(eKeyCode::A))
+	{
+		m_x -= speed * Time::GetDeltaTime();
+	}
+
+	if (Input::GetKey(eKeyCode::S))
 	{
 		m_y += speed * Time::GetDeltaTime();
+	}
+
+	if (Input::GetKey(eKeyCode::D))
+	{
+		m_x += speed * Time::GetDeltaTime();
 	}
 }
 
@@ -46,5 +44,5 @@ void Rect::LateUpdate()
 
 void Rect::Render(HDC hdc)
 {
-	Rectangle(hdc, 100 + m_x, 100 + m_y, 200 + m_x, 200 + m_y);
+	Rectangle(hdc, m_x, m_y, m_width + m_x, m_height + m_y);
 }

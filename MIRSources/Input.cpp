@@ -1,5 +1,4 @@
 #include "Input.h"
-#include <iostream>
 
 using namespace MIR;
 
@@ -7,7 +6,7 @@ std::array<int, MAX_KEY_SIZE> g_ascii =
 {
 	'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
 	'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-	VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN
+	VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN, VK_SPACE
 };
 
 std::array<Input::Key, MAX_KEY_SIZE>* Input::m_keys
@@ -26,7 +25,6 @@ void Input::Update()
 void Input::CreateKeys()
 {
 	eKeyCode now_code = eKeyCode::A;
-	std::cout << static_cast<UINT>(now_code) << '\n';
 
 	for (auto& key : *m_keys)
 	{
