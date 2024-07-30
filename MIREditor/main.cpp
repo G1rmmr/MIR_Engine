@@ -2,17 +2,18 @@
 //
 
 #include "framework.h"
-#include "Editor_window.h"
-#include "..\\MIREngine_sources\MIRApplication.h"
-
-MIR::Application g_app;
-
-#define MAX_LOADSTRING 100
+#include "Editor.h"
+#include "..\MIRSources\App.h"
 
 // 전역 변수:
+
+const INT16 MAX_LOADSTRING = 100;
+
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
+
+MIR::App* g_app;
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -62,7 +63,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // Instance handle
         else
         {
             // Game Logic
-            g_app.Run();
+            g_app->Run();
         }
     }
 
@@ -75,6 +76,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // Instance handle
     //    }
     //}
 
+    delete g_app;
     return (int) msg.wParam;
 }
 
@@ -123,7 +125,11 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-   g_app.Initialize(hWnd);
+   const UINT width = 1600;
+   const UINT height = 900;
+
+   g_app = new MIR::App{};
+   g_app->Initialize(hWnd, width, height);
 
    if (!hWnd)
    {

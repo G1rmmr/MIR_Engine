@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor_window", "Editor_window\Editor_window.vcxproj", "{C2BA58C0-BD8D-4FCA-BA5C-D193C7BDC33E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MIREditor", "MIREditor\Editor.vcxproj", "{C2BA58C0-BD8D-4FCA-BA5C-D193C7BDC33E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MIREngine_windows", "MIREngine_windows\MIREngine_windows.vcxproj", "{B042730D-8AA1-4CA0-B6FC-34B17891279D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MIRSources", "MIRSources\MIRSources.vcxitems", "{19342DE6-6F27-4707-9302-4A860BBF663B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MIREngine_sources", "MIREngine_sources\MIREngine_sources.vcxitems", "{19342DE6-6F27-4707-9302-4A860BBF663B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MIRWindows", "MIRWindows\MIRWindows.vcxproj", "{B042730D-8AA1-4CA0-B6FC-34B17891279D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,7 +41,8 @@ Global
 		SolutionGuid = {064E4275-BFC4-4E9D-9684-C362FBA93699}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		MIREngine_sources\MIREngine_sources.vcxitems*{19342de6-6f27-4707-9302-4a860bbf663b}*SharedItemsImports = 9
-		MIREngine_sources\MIREngine_sources.vcxitems*{b042730d-8aa1-4ca0-b6fc-34b17891279d}*SharedItemsImports = 4
+		MIRSources\MIRSources.vcxitems*{19342de6-6f27-4707-9302-4a860bbf663b}*SharedItemsImports = 9
+		MIRSources\MIRSources.vcxitems*{b042730d-8aa1-4ca0-b6fc-34b17891279d}*SharedItemsImports = 4
+		MIRSources\MIRSources.vcxitems*{c2ba58c0-bd8d-4fca-ba5c-d193c7bdc33e}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal
