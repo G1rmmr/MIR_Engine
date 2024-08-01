@@ -3,7 +3,6 @@
 #include "CommonInclude.h"
 
 #include "Rect.h"
-#include "Circle.h"
 
 namespace MIR
 {
@@ -19,16 +18,16 @@ namespace MIR
 
 		void Update();
 		void LateUpdate();
-
 		void Render();
 
-		void UpdateBullet();
-
 	private:
-		//std::vector<GameObject*>* m_objects;
-
-		Rect* m_player;
-		Circle* m_bullet;
+		void ClearRenderTarget();
+		void CopyRenderTarget(HDC source, HDC dest);
+		void AdjustWindow(const HWND hwnd, UINT width, UINT height);
+		void CreateBuffer(UINT width, UINT height);
+		void InitEtc();
+		
+		std::vector<Rect>* m_objects;
 
 		HWND m_hwnd;
 		
@@ -41,7 +40,6 @@ namespace MIR
 		UINT m_height;
 
 		float m_speed;
-		bool m_can_fire;
 	};
 }
 

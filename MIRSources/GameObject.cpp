@@ -1,8 +1,13 @@
 #include "GameObject.h"
 
-MIR::GameObject::GameObject() {}
-MIR::GameObject::~GameObject() {}
+using namespace MIR;
 
-void MIR::GameObject::Update(float speed) {}
-void MIR::GameObject::LateUpdate() {}
-void MIR::GameObject::Render(HDC hdc) {}
+GameObject::GameObject()
+{
+
+}
+
+GameObject::~GameObject()
+{
+
+}

@@ -11,7 +11,7 @@ Rect::Rect() : m_x(0.0f), m_y(0.0f), m_width(100.0f), m_height(100.0f)
 
 Rect::~Rect()
 {
-	delete this;
+	
 }
 
 void Rect::Update(float speed)

@@ -6,11 +6,11 @@ class Rect : public MIR::GameObject
 {
 public:
 	Rect();
-	virtual ~Rect() override;
+	~Rect() override;
 
-	virtual void Update(float speed) override;
-	virtual void LateUpdate() override;
-	virtual void Render(HDC hdc) override;
+	void Update(float speed) override;
+	void LateUpdate() override;
+	void Render(HDC hdc) override;
 
 	void SetPos(float x, float y)
 	{

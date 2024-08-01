@@ -1,5 +1,6 @@
 #pragma once
 
-#include <Windows.h>
 #include <vector>
 #include <array>
+
+#include <Windows.h>
